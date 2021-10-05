@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto_pac/models/usuario.dart';
 import 'package:projeto_pac/widgets/menu_lateral.dart';
 
 import 'minha_conta.dart';
@@ -88,7 +89,11 @@ class _PaginaInicialState extends State<PaginaInicial> {
     if (string == "Conta") {
       Navigator.push(
         context,
-        MaterialPageRoute(builder: (context) => MinhaConta()),
+        MaterialPageRoute(
+            builder: (context) => MinhaConta(
+                  usuario:
+                      new Usuario("Teste", "Senha123", "cadu.rubini@gmail.com"),
+                )),
       );
     }
   }

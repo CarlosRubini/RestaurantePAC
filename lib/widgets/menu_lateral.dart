@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:projeto_pac/pages/todos_usuarios.dart';
 
 class MenuLateral extends StatelessWidget {
   @override
@@ -69,7 +70,12 @@ class MenuLateral extends StatelessWidget {
                 Padding(padding: EdgeInsets.all(5)),
                 Container(
                     child: ElevatedButton(
-                  onPressed: () => {},
+                  onPressed: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => TodosUsuarios()),
+                    )
+                  },
                   child: Row(
                     children: [
                       Icon(
