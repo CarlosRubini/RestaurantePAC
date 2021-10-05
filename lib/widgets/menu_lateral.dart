@@ -42,7 +42,67 @@ class MenuLateral extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                             fontSize: 15,
                             color: Colors.black),
-                      )
+                      ),
+                    ],
+                  ),
+                )),
+                Padding(padding: EdgeInsets.all(5)),
+                Container(
+                    child: ElevatedButton(
+                  onPressed: () => {},
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.backpack,
+                        size: 40,
+                      ),
+                      Text(
+                        "Pedidos",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Colors.black),
+                      ),
+                    ],
+                  ),
+                )),
+                Padding(padding: EdgeInsets.all(5)),
+                Container(
+                    child: ElevatedButton(
+                  onPressed: () => {},
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.account_box,
+                        size: 40,
+                      ),
+                      Text(
+                        "Usuários",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Colors.black),
+                      ),
+                    ],
+                  ),
+                )),
+                Padding(padding: EdgeInsets.all(5)),
+                Container(
+                    child: ElevatedButton(
+                  onPressed: () => {},
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.food_bank,
+                        size: 40,
+                      ),
+                      Text(
+                        "Cardárpio",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            color: Colors.black),
+                      ),
                     ],
                   ),
                 )),

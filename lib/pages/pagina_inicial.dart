@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_pac/widgets/menu_lateral.dart';
 
+import 'minha_conta.dart';
+
 class PaginaInicial extends StatefulWidget {
   PaginaInicial({Key key}) : super(key: key);
 
@@ -27,13 +29,23 @@ class _PaginaInicialState extends State<PaginaInicial> {
                 'assets/burger-logo.png',
                 width: 75,
               ),
-              Text("Restaurante"),
+              Text("Hamburgueria"),
               Spacer(),
               Text("Usuário"),
-              IconButton(
-                iconSize: 30,
-                icon: Icon(Icons.account_box),
-                onPressed: () => {},
+              PopupMenuButton(
+                child: Icon(
+                  Icons.account_box,
+                  size: 30,
+                ),
+                onSelected: (string) {
+                  selectOption(string);
+                },
+                itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
+                  const PopupMenuItem<String>(
+                      value: "Conta", child: Text("Minha Conta")),
+                  const PopupMenuItem<String>(
+                      value: "Sair", child: Text("Sair")),
+                ],
               )
             ],
           )),
@@ -44,7 +56,6 @@ class _PaginaInicialState extends State<PaginaInicial> {
           child: Align(
               alignment: Alignment.topCenter,
               child: GridView.count(
-                  primary: false,
                   padding: const EdgeInsets.fromLTRB(100, 15, 100, 15),
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
@@ -55,7 +66,7 @@ class _PaginaInicialState extends State<PaginaInicial> {
                             child: Card(
                                 color: Colors.orange,
                                 child: InkWell(
-                                    splashColor: Colors.grey.withAlpha(30),
+                                    splashColor: Colors.pink.withAlpha(255),
                                     onTap: () => {},
                                     child: Column(
                                       children: <Widget>[
@@ -71,5 +82,14 @@ class _PaginaInicialState extends State<PaginaInicial> {
                                     )))));
                   }))),
         )));
+  }
+
+  selectOption(string) {
+    if (string == "Conta") {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => MinhaConta()),
+      );
+    }
   }
 }
