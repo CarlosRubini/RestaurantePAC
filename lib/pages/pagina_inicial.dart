@@ -91,6 +91,7 @@ class _PaginaInicialState extends State<PaginaInicial> {
         context,
         MaterialPageRoute(
             builder: (context) => MinhaConta(
+                  title: 'Minha Conta',
                   usuario:
                       new Usuario("Teste", "Senha123", "cadu.rubini@gmail.com"),
                 )),

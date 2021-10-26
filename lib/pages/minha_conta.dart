@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:projeto_pac/models/usuario.dart';
 
 class MinhaConta extends StatefulWidget {
-  MinhaConta({Key key, this.usuario}) : super(key: key);
+  MinhaConta({Key key, this.title, this.usuario}) : super(key: key);
 
   final Usuario usuario;
+  final String title;
   @override
   _MinhaContaState createState() => _MinhaContaState();
 }
@@ -26,7 +27,7 @@ class _MinhaContaState extends State<MinhaConta> {
         appBar: new AppBar(
           title: Container(
               child: Row(
-            children: [Text("Minha Conta")],
+            children: [Text(this.widget.title)],
           )),
         ),
         body: Container(

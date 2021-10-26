@@ -1,26 +1,25 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_pac/models/usuario.dart';
+import 'package:projeto_pac/pages/cadastro_cardapio.dart';
 
-import 'minha_conta.dart';
-
-class TodosUsuarios extends StatefulWidget {
-  TodosUsuarios({
+class TodosCardapio extends StatefulWidget {
+  TodosCardapio({
     Key key,
   }) : super(key: key);
 
   @override
-  _TodosUsuariosState createState() => _TodosUsuariosState();
+  _TodosCardapioState createState() => _TodosCardapioState();
 }
 
-class _TodosUsuariosState extends State<TodosUsuarios> {
+class _TodosCardapioState extends State<TodosCardapio> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: new AppBar(
           title: Container(
               child: Row(
-            children: [Text("Administração de Usuários")],
+            children: [Text("Cardápio")],
           )),
         ),
         body: Center(
@@ -30,14 +29,20 @@ class _TodosUsuariosState extends State<TodosUsuarios> {
               child: GridView.count(
                   padding: const EdgeInsets.fromLTRB(100, 15, 100, 15),
                   childAspectRatio: (150 / 50),
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  crossAxisCount: 8,
+                  crossAxisSpacing: 8,
+                  mainAxisSpacing: 8,
+                  crossAxisCount: 6,
                   children: List.generate(10, (index) {
+                    MaterialColor color = Colors.orange;
+                    String status = 'Ativo';
+                    if (index % 2 == 0) {
+                      color = Colors.red;
+                      status = 'Inativo';
+                    }
                     return Container(
                         child: Center(
                             child: Card(
-                                color: Colors.orange,
+                                color: color,
                                 child: InkWell(
                                     splashColor: Colors.pink.withAlpha(255),
                                     onTap: () => {
@@ -45,26 +50,40 @@ class _TodosUsuariosState extends State<TodosUsuarios> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    MinhaConta(
-                                                      title:
-                                                          'Administração de Usuário',
+                                                    CadastroCardapio(
+                                                      title: 'Cadastro Item',
                                                       usuario: new Usuario(
-                                                          'Usuário $index',
-                                                          "Senha123",
+                                                          'Produto $index',
+                                                          "25",
                                                           "cadu.rubini@gmail.com"),
                                                     )),
                                           )
                                         },
                                     child: Column(
-                                      children: <Widget>[
-                                        ListTile(
-                                          title: Text('Usuário $index'),
-                                          subtitle: Text(
-                                              'Email: cadu.rubini@gmail.com'),
-                                        )
-                                      ],
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[teste(index, status)],
                                     )))));
                   }))),
         )));
+  }
+
+  Widget teste(int index, String status) {
+    if (index == 0) {
+      return Container(
+        alignment: Alignment.center,
+        child: Icon(
+          Icons.add,
+          size: 50,
+        ),
+        constraints: BoxConstraints(minWidth: 275, minHeight: 50),
+      );
+    }
+
+    return ListTile(
+      title: Text('Item $index'),
+      subtitle: Text('''Preço: RS 0,000
+                                                            Status $status'''),
+    );
   }
 }
