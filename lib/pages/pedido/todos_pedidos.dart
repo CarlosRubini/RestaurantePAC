@@ -1,37 +1,37 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:projeto_pac/models/usuario.dart';
-import 'package:projeto_pac/pages/cadastro_cardapio.dart';
+import 'detalhar_pedido.dart';
 
-class TodosCardapio extends StatefulWidget {
-  TodosCardapio({
+class TodosPedidos extends StatefulWidget {
+  TodosPedidos({
     Key key,
   }) : super(key: key);
 
   @override
-  _TodosCardapioState createState() => _TodosCardapioState();
+  _TodosPedidosState createState() => _TodosPedidosState();
 }
 
-class _TodosCardapioState extends State<TodosCardapio> {
+class _TodosPedidosState extends State<TodosPedidos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: new AppBar(
           title: Container(
               child: Row(
-            children: [Text("Cardápio")],
+            children: [Text("Pedidos")],
           )),
         ),
         body: Center(
             child: Container(
+          color: Colors.grey[200],
           child: Align(
               alignment: Alignment.topCenter,
               child: GridView.count(
                   padding: const EdgeInsets.fromLTRB(100, 15, 100, 15),
                   childAspectRatio: (150 / 50),
-                  crossAxisSpacing: 8,
-                  mainAxisSpacing: 8,
-                  crossAxisCount: 6,
+                  crossAxisSpacing: 6,
+                  mainAxisSpacing: 6,
+                  crossAxisCount: 4,
                   children: List.generate(10, (index) {
                     MaterialColor color = Colors.orange;
                     String status = 'Ativo';
@@ -50,40 +50,31 @@ class _TodosCardapioState extends State<TodosCardapio> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    CadastroCardapio(
-                                                      title: 'Cadastro Item',
-                                                      usuario: new Usuario(
-                                                          'Produto $index',
-                                                          "25",
-                                                          "cadu.rubini@gmail.com"),
+                                                    DetalharPedido(
+                                                      title:
+                                                          'Detalhar Pedido $index',
+                                                      usuario: null,
                                                     )),
                                           )
                                         },
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
-                                      children: <Widget>[teste(index, status)],
+                                      children: <Widget>[
+                                        cardItem(index, status)
+                                      ],
                                     )))));
                   }))),
         )));
   }
 
-  Widget teste(int index, String status) {
-    if (index == 0) {
-      return Container(
-        alignment: Alignment.center,
-        child: Icon(
-          Icons.add,
-          size: 50,
-        ),
-        constraints: BoxConstraints(minWidth: 275, minHeight: 50),
-      );
-    }
-
+  Widget cardItem(int index, String status) {
     return ListTile(
-      title: Text('Item $index'),
-      subtitle: Text('''Preço: RS 0,000
-                                                            Status $status'''),
+      title: Text('Pedido $index'),
+      subtitle: Text('''Hora: 19:45 $index
+Valor Total: RS 0,000
+Endereço: Rua Joao, 1
+Qtde Itens: 10'''),
     );
   }
 }

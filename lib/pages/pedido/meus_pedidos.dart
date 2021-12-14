@@ -1,43 +1,49 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:projeto_pac/models/usuario.dart';
 
-import 'minha_conta.dart';
+import 'detalhar_pedido.dart';
 
-class TodosUsuarios extends StatefulWidget {
-  TodosUsuarios({
+class MeusPedidos extends StatefulWidget {
+  MeusPedidos({
     Key key,
   }) : super(key: key);
 
   @override
-  _TodosUsuariosState createState() => _TodosUsuariosState();
+  _MeusPedidosState createState() => _MeusPedidosState();
 }
 
-class _TodosUsuariosState extends State<TodosUsuarios> {
+class _MeusPedidosState extends State<MeusPedidos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: new AppBar(
           title: Container(
               child: Row(
-            children: [Text("Administração de Usuários")],
+            children: [Text("Pedidos")],
           )),
         ),
         body: Center(
             child: Container(
+          color: Colors.grey[200],
           child: Align(
               alignment: Alignment.topCenter,
               child: GridView.count(
                   padding: const EdgeInsets.fromLTRB(100, 15, 100, 15),
                   childAspectRatio: (150 / 50),
-                  crossAxisSpacing: 10,
-                  mainAxisSpacing: 10,
-                  crossAxisCount: 8,
+                  crossAxisSpacing: 6,
+                  mainAxisSpacing: 6,
+                  crossAxisCount: 4,
                   children: List.generate(10, (index) {
+                    MaterialColor color = Colors.orange;
+                    String status = 'Ativo';
+                    if (index % 2 == 0) {
+                      color = Colors.red;
+                      status = 'Inativo';
+                    }
                     return Container(
                         child: Center(
                             child: Card(
-                                color: Colors.orange,
+                                color: color,
                                 child: InkWell(
                                     splashColor: Colors.pink.withAlpha(255),
                                     onTap: () => {
@@ -45,26 +51,30 @@ class _TodosUsuariosState extends State<TodosUsuarios> {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    MinhaConta(
-                                                      title:
-                                                          'Administração de Usuário',
-                                                      usuario: new Usuario(
-                                                          'Usuário $index',
-                                                          "Senha123",
-                                                          "cadu.rubini@gmail.com"),
+                                                    DetalharPedido(
+                                                      title: 'Detalhar Pedido',
+                                                      usuario: null,
                                                     )),
                                           )
                                         },
                                     child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: <Widget>[
-                                        ListTile(
-                                          title: Text('Usuário $index'),
-                                          subtitle: Text(
-                                              'Email: cadu.rubini@gmail.com'),
-                                        )
+                                        cardItem(index, status)
                                       ],
                                     )))));
                   }))),
         )));
+  }
+
+  Widget cardItem(int index, String status) {
+    return ListTile(
+      title: Text('Pedido $index'),
+      subtitle: Text('''Hora: 19:45 $index
+Valor Total: RS 0,000
+Endereço: Rua Joao, 1
+Qtde Itens: 10'''),
+    );
   }
 }
